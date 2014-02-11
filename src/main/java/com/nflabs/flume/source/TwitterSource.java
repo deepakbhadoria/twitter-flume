@@ -118,12 +118,11 @@ public class TwitterSource extends AbstractSource
     twitterStream.addListener(listener);
 
     // Set up a filter to pull out industry-relevant tweets
-    System.out.println("YOOOOOO : " + keywords[0] + " - " + keywords.length);
-    if (keywords.length  == 0) {
-      logger.info("Starting up Twitter sampling...");
+    if (keywords.length  <= 1) {
+      logger.debug("Starting up Twitter sampling...");
       twitterStream.sample();
     } else {
-      logger.info("Starting up Twitter filtering...");
+      logger.debug("Starting up Twitter filtering...");
 
       FilterQuery query = new FilterQuery().track(keywords);
       twitterStream.filter(query);
